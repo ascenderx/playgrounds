@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#000000"/>
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+    <title>Artemis</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      html, body {
+        height: 100%;
+      }
+      
+      body {
+        margin: 0;
+        background-color: black;
+        color: white;
+        font-family: Verdana, sans-serif;
+      }
+      
+      .drawing-area {
+        width: 100%;
+        height: calc(100% - 5px);
+      }
+    </style>
+    <!-- Third-party -->
+    <script src="gl-matrix-min.js"></script>
+    <!-- Local -->
+    <script src="maths.js"></script>
+    <script src="cube.js"></script>
+    <script src="camera.js"></script>
+    <script src="shaders.js"></script>
+    <script src="graphics.js"></script>
+    <script src="timer.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="drawing-area">
+      <canvas id="cvs">
+        Your browser does not support the HTML5 Canvas API.
+      </canvas>
+    </div>
+  </body>
+</html>
