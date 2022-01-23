@@ -1,0 +1,49 @@
+; This could also be written as
+; "Header Format=x0 Tracks=x1 TickDivision=x60".
+Header Format=0 Tracks=1 TickDivision=96
+
+Track
+DeltaDefault 0
+ChannelDefault 0
+VolumeDefault 127
+
+; 4 means quarter note, which per TickDivision above is 96.
+; This could also be written as "NoteDurationDefault #x60"
+; or "NoteDurationDefault #96".
+NoteDurationDefault 4
+
+; This could also be written as "ProgramChange Channel0 #x4F"
+; or "ProgramChange Channel0 #79".
+ProgramChange Ocarina
+
+; With the above defaults, "C5" is equivalent to "0 C5'4.0,127"
+; or "#0 C5'#96.0,127" or "#0 C5'#x60.0,xFF".
+Notes {
+C5
+4 D5
+4 G5
+4 G4
+4 C5
+}
+
+; Notes {
+; 0 C5'4.0,127
+; 4 D5'4.0,127
+; 4 G5'4.0,127
+; 4 G4'4.0,127
+; 4 C5'4.0,127
+; }
+
+; 0 NoteOn Channel0 C5 127
+; 96 NoteOff Channel0 C5 127
+; 0 NoteOn Channel0 D5 127
+; 96 NoteOff Channel0 D5 127
+; 0 NoteOn Channel0 G5 127
+; 96 NoteOff Channel0 G5 127
+; 0 NoteOn Channel0 G4 127
+; 96 NoteOff Channel0 G4 127
+; 0 NoteOn Channel0 C5 127
+; 96 NoteOff Channel0 C5 127
+
+EndOfTrack
+

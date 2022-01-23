@@ -1,0 +1,30 @@
+4D 54 68 64 ; HeaderChunk ("MThd")
+00 00 00 06 ; ChunkLength 6 (bytes)
+00 00 ; Format 0
+00 01 ; TrackCount 1
+00 60 ; TickDivision 96 (ppqn = pulses per quarter note)
+
+4D 54 72 6B ; TrackChunk ("MTrk")
+00 00 00 2F ; ChunkLength 47 (bytes)
+
+00 C0 4F ; 0 ProgramChange Ocarina 
+
+00 90 48 FF ; 0 NoteOn Channel0 C5 127
+
+60 80 48 FF ; 96 NoteOff Channel0 C5 127 (96 = 1 quarter note)
+00 90 4A FF ; 0 NoteOn Channel0 D5 127
+
+60 80 4A FF ; 96 NoteOff Channel0 D5 127
+00 90 4F FF ; 0 NoteOn Channel0 G5 127
+
+60 80 4F FF ; 96 NoteOff Channel0 G5 127
+00 90 43 FF ; 0 NoteOn Channel0 G4 127
+
+60 80 43 FF ; 96 NoteOff Channel0 G4 127
+00 90 48 FF ; 0 NoteOn Channel0 C5 127
+
+60 80 48 FF ; 96 NoteOff Channel0 C5 127
+
+00 FF 2F 00 ; EndOfTrack
+
+
