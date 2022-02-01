@@ -113,7 +113,7 @@ class TreeFractal {
     }
     const branch = this.#branches.shift();
     if (branch.depth > this.#maxDepth) {
-      this.#branches.clear();
+      this.#branches = [];
       return false;
     }
 
@@ -185,29 +185,36 @@ class IntervalTimer {
 function window_onLoad() {
   const cvs = document.getElementById('cvs');
   const ctx = cvs.getContext('2d');
-  
-  function window_onResize() {
-    cvs.width = cvs.parentElement.clientWidth;
-    cvs.height = cvs.parentElement.clientHeight;
-  }
-  window_onResize();
-  window.addEventListener('resize', window_onResize);
+  cvs.width = cvs.parentElement.clientWidth;
+  cvs.height = cvs.parentElement.clientHeight;
 
-  const trunkLength = cvs.height * 0.4;
+  const trunkLength = Math.min(cvs.width, cvs.height) * 0.2;
   const trunkX = cvs.width * 0.5;
-  const trunkY = cvs.height;
-  const tree = new TreeFractal(trunkLength, trunkX, trunkY, {
-    trunkAngle: -90,
-    lengthRatio: 0.6,
-    hueDelta: 10,
-  });
+  const trunkY = cvs.height * 0.5;
+  const numTrunks = 3;
+  const trunkDeltaAngle = 360 / numTrunks;
+  const trees = [];
+  for (let t = 0; t < numTrunks; t++) {
+    trees.push(new TreeFractal(trunkLength, trunkX, trunkY, {
+      trunkAngle: -90 + trunkDeltaAngle*t,
+      lengthRatio: 0.6,
+      hueDelta: 30,
+      angleDelta: 60,
+      maxDepth: 10,
+    }));
+  }
   
   function timer_onTick(timestamp) {
-    const status = tree.iterateAndDraw(ctx);
-    if (!status) {
+    for (const tree of trees) {
+      const status = tree.iterateAndDraw(ctx);
+      if (!status) {
+        trees.splice(trees.indexOf(tree), 1);
+      }
+    }
+    if (trees.length === 0) {
       console.log('Done');
     }
-    return status;
+    return trees.length > 0;
   }
   const timer = new IntervalTimer(timer_onTick.bind(this), 10);
   timer.resume();
