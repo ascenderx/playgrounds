@@ -1,4 +1,4 @@
 # Vim swap files
-[._]*.sw[a-p]
-[._].sw[a-p]
+**/[._]*.sw[a-p]
+**/[._].sw[a-p]
 
