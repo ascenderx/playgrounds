@@ -126,6 +126,7 @@ class TreeFractal {
     this.#branches.push(rightBranch);
     
     ctx.strokeStyle = `hsl(${branch.hue}, 100%, 50%)`;
+    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(branch.x, branch.y);
     ctx.lineTo(leftBranch.x, leftBranch.y);
